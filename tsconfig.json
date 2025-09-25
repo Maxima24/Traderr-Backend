@@ -5,6 +5,10 @@
     "rootDir": "src",
     "outDir": "dist",
     "strict": true,
+     "baseUrl": "src",
+    "paths": {
+      "*": ["*"]
+    },
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
