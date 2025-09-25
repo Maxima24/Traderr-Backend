@@ -15,14 +15,14 @@ datasource db {
 
 model User {
   id            String   @id @default(uuid())
-  user_name     String
-  email         String
-  password      String
+  user_name     String?
+  email         String?  @unique
+  password      String?
   role          String   @default("user")
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
-  avatarUrl     String
-  walletAddress String
+  avatarUrl     String?
+  walletAddress String?  @unique
   nonce         String?
   trades        Trades[]
 }

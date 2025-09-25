@@ -3,6 +3,7 @@ import cors from "cors"
 import morgan from "morgan"
 import dotenv  from "dotenv"
 import { env } from "./config/env"
+import authRoutes from "./routes/index"
     export class Server{
         private app:Application
         private port:number
@@ -33,6 +34,7 @@ import { env } from "./config/env"
                     message:"APi is running"
                 })
             })
+            this.app.use("/api/auth/",authRoutes)
         }
         private initializeErrorHandling():void{
             this.app.use((err:any,req:any,res:any,next:any)=>{
