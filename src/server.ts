@@ -2,16 +2,20 @@ import express ,{Application} from "express"
 import cors from "cors"
 import morgan from "morgan"
 import dotenv  from "dotenv"
+import { env } from "./config/env"
     export class Server{
         private app:Application
         private port:number
+        private env: typeof env
         constructor(){
             dotenv.config()
             this.app = express()
-            this.port = parseInt(process.env.PORT ||"8000",10)
+            this.port = parseInt(env.PORT ||"8000",10)
+            this.env = env
             this.initializeMiddleWares()
             this.intializeRoutes()
             this.initializeErrorHandling()
+
             
             
         }
