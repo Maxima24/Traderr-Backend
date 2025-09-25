@@ -6,10 +6,50 @@
 
 generator client {
   provider = "prisma-client-js"
- 
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(uuid())
+  user_name     String
+  email         String
+  password      String
+  role          String   @default("user")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  avatarUrl     String
+  walletAddress String
+  nonce         String?
+  trades        Trades[]
+}
+enum TradeType{
+  BUY
+  SELL
+}
+enum TradeStatus{
+  PENDING
+  CONFIRMED
+  FAILED
+}
+model Trades {
+  id     String @id @default(uuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+  //ASSETS AND TRADE DETAILS
+  asset  String 
+  amount Float
+  tradeType TradeType
+  //BLOCKCHAIN
+  txHash String  @unique
+  chain String
+  status TradeStatus
+  // Market Details
+  price Float
+  settled Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
