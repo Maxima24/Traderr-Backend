@@ -8,7 +8,8 @@ const envSchema = z.object({
     .default("development"),
   PORT: z.string().default("8000"),
   DATABASE_URL: z.string(),
-DIRECT_URL:z.string()
+DIRECT_URL:z.string(),
+JWT_SECRET:z.string()
 
 });
 const parsedEnv = envSchema.safeParse(process.env)
