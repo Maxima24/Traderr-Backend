@@ -1,8 +1,10 @@
 import {Router,Request,Response,NextFunction} from "express"
 // import UserSeri
 import { userCreateValidator,userLoginValidator, userLoginWithWalletValidator, walletSignUpValidator } from "../validators/userValidator"
-import { UserService } from "../services/userService"
-import { AuthService } from "../services/authService"
+// src/controllers/UserController.ts
+import { UserService } from "../services/UserService";
+import { AuthService } from "../services/AuthService";
+
  export class UserController{
     private userService:UserService
     private authService:AuthService
